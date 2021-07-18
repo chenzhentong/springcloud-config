@@ -1,0 +1,26 @@
+## spring相关配置信息
+spring:
+  profiles:
+    active: dev # 当前激活的配置
+    include: base, common  # 引入底层的配置。如果有其他自定义配置，请使用英文逗号分隔
+
+###====================== 声明通用属性 - 开始 ======================###
+---
+spring:
+  profiles: common
+
+## 应用相关
+app:
+  name: UCCP
+
+# 登录验证相关
+sso:
+  excludeUrl: #不需要做登录验证的地址列表
+  tokenExpireTime: 3600 #登录签名的最大存活时间。每次用户操作，都会刷新签名的存活时间。单位：秒
+  homePage: /itsm-main #登陆后跳转的首页
+
+# 操作日志
+log:
+  operate-switch: true # 开启操作日志记录
+...
+###====================== 声明通用属性 - 结束 ======================###

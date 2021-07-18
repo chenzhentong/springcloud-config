@@ -1,0 +1,5 @@
+.idea/
+logs/
+/uccp-demo/target
+/uccp-prac-web/target
+*.iml
