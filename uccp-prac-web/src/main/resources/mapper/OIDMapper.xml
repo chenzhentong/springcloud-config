@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nantian.dao.OIDMapper">
+
+    <insert id="insertOID" parameterType="OID">
+        insert uccp_oid_info(OID,OID_NAME,PUB_FLAG,OID_DEVICE_TYPE,ENTERPRISE,OID_DEVICE_CODE,OID_DEVICE_VERSION,DESCRIPTION)
+        values(#{OID},#{OID_NAME},#{PUB_FLAG},#{OID_DEVICE_TYPE},#{ENTERPRISE},#{OID_DEVICE_CODE},#{OID_DEVICE_VERSION},#{DESCRIPTION})
+    </insert>
+    <delete id="deleteOIDById"  parameterType="String">
+        delete from  uccp_oid_info where OID = #{OID}
+    </delete>
+
+    <update id="updateOIDById"  parameterType="OID">
+        update  uccp_oid_info
+        set OID = #{OID}
+        <if test="OID_NAME!=null">
+            ,OID_NAME=#{OID_NAME}
+        </if>
+        <if test="PUB_FLAG!=null">
+            ,PUB_FLAG=#{PUB_FLAG}
+        </if>
+        <if test="OID_DEVICE_TYPE!=null">
+            ,OID_DEVICE_TYPE=#{OID_DEVICE_TYPE}
+        </if>
+
+        <if test="ENTERPRISE!=null">
+            ,ENTERPRISE=#{ENTERPRISE}
+        </if>
+        <if test="OID_DEVICE_CODE!=null">
+            ,OID_DEVICE_CODE=#{OID_DEVICE_CODE}
+        </if>
+        <if test="OID_DEVICE_VERSION!=null">
+            ,OID_DEVICE_VERSION=#{OID_DEVICE_VERSION}
+        </if>
+        <if test="DESCRIPTION!=null">
+            ,DESCRIPTION=#{DESCRIPTION}
+        </if>
+        where OID = #{OID}
+    </update>
+
+    <select id="selectOIDById" resultMap="OIDResultMap" parameterType="String">
+        select * from  uccp_oid_info where OID = #{OID} limit 1
+    </select>
+
+    <select id="selectAllOIDs" resultMap="OIDResultMap">
+        select * from  uccp_oid_info
+    </select>
+    <resultMap id="OIDResultMap" type="OID">
+        <id column="OID" property="OID"/>
+        <result column="OID_NAME" property="OID_NAME"/>
+        <result column="PUB_FLAG" property="PUB_FLAG"/>
+        <result column="OID_DEVICE_TYPE" property="OID_DEVICE_TYPE"/>
+        <result column="ENTERPRISE" property="ENTERPRISE"/>
+        <result column="OID_DEVICE_CODE" property="OID_DEVICE_CODE"/>
+        <result column="OID_DEVICE_VERSION" property="OID_DEVICE_VERSION"/>
+        <result column="DESCRIPTION" property="DESCRIPTION"/>
+    </resultMap>
+
+</mapper>

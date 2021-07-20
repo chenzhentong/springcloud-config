@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>OID信息管理</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+</head>
+<body>
+<nav class="navbar  nav-pills  navbar-expand-lg ">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link " href="/uccp/practice">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/uccp/job/index" >采控作业执行流水信息查询</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/uccp/task/index" >采控任务流水信息查询</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/uccp/oid/index" >OID信息管理</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/uccp/practice">主页</a></li>
+            <li class="breadcrumb-item active" aria-current="page">OID信息管理</li>
+        </ol>
+    </nav>
+    <h2 th:text="${'共查询到' +oidList.size() + '条OID信息' }" class="text-center"></h2>
+    <a class="btn btn-primary" href="/uccp/oid/insert">添加</a>
+    <br>
+    <table class="table table-hover table-bordered  table-striped ">
+        <tr>
+            <th>OID</th>
+            <th>OID名称</th>
+            <th>是否公有</th>
+            <th>OID类型</th>
+            <th>厂商</th>
+            <th>设备型号</th>
+            <th>设备版本</th>
+            <th>描述</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="obj : ${oidList}">
+            <td th:text="${obj.OID}"></td>
+            <td th:text="${obj.OID_NAME}"></td>
+            <th th:text="${obj.PUB_FLAG}"></th>
+            <th th:text="${obj.OID_DEVICE_TYPE}"></th>
+            <th th:text="${obj.ENTERPRISE}"></th>
+            <th th:text="${obj.OID_DEVICE_CODE}"></th>
+            <th th:text="${obj.OID_DEVICE_VERSION}"></th>
+            <th th:text="${obj.DESCRIPTION}"></th>
+            <th>
+                <a class="btn btn-info" th:href="'/uccp/oid/update/' + ${obj.OID}">修改</a>
+                <a class="btn btn-danger" th:href="'/uccp/oid/delete/' + ${obj.OID}">删除</a>
+            </th>
+        </tr>
+    </table>
+</div>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.js"></script>
+</body>
+</html>

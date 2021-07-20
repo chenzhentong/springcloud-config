@@ -15,12 +15,12 @@ app:
 
 # 登录验证相关
 sso:
-  excludeUrl: #不需要做登录验证的地址列表
+  excludeUrl: /job/**,/task/**,/practice/**,/oid/** #不需要做登录验证的地址列表
   tokenExpireTime: 3600 #登录签名的最大存活时间。每次用户操作，都会刷新签名的存活时间。单位：秒
   homePage: /itsm-main #登陆后跳转的首页
 
 # 操作日志
 log:
-  operate-switch: true # 开启操作日志记录
+  operate-switch: false # 开启操作日志记录
 ...
 ###====================== 声明通用属性 - 结束 ======================###

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>采控任务流水信息搜索结果</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+</head>
+<body>
+<nav class="navbar  nav-pills  navbar-expand-lg ">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+
+        <!--    <a class="navbar-brand" href="#">Navbar</a>-->
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link " href="/uccp/practice">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/uccp/job/index" >采控作业执行流水信息查询</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/uccp/task/index" >采控任务流水信息查询</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/uccp/oid/index" >OID信息管理</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="container">
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/uccp/practice">主页</a></li>
+            <li class="breadcrumb-item"><a href="/uccp/task/index">采控任务流水信息搜索</a></li>
+            <li class="breadcrumb-item active" aria-current="page">采控任务流水信息搜索结果</li>
+        </ol>
+    </nav>
+    <h2 th:text="${'共查询到' +taskList.size() + '条采控任务流水信息' }" class="text-center"></h2>
+    <table  class="table table-hover table-bordered  table-striped table-responsive">
+        <tr>
+            <th>任务运行ID</th>
+            <th>作业运行ID</th>
+            <th>作业ID</th>
+            <th>设备IP</th>
+            <th>开始日期</th>
+            <th>结束日期</th>
+            <th>任务运行阶段</th>
+            <th>任务运行结果</th>
+            <th>错误信息</th>
+        </tr>
+        <tr th:each="task : ${taskList}">
+            <td th:text="${task.TASK_ID}"></td>
+            <td th:text="${task.JOB_RUN_ID}"></td>
+            <th th:text="${task.JOB_ID}"></th>
+            <th th:text="${task.DEV_IP}"></th>
+            <th th:text="${task.START_TIME}"></th>
+            <th th:text="${task.END_TIME}"></th>
+            <th th:text="${task.TASK_STATE}"></th>
+            <th th:text="${task.TASK_RLT}"></th>
+            <th th:text="${task.ERR_INFO}"></th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

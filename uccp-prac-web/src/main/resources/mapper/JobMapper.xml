@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nantian.dao.JobMapper">
+    <select id="selectJobByCriteria" parameterType="Job" resultMap="jobResultMap">
+        select  JOB_RUN_ID,JOB_ID,START_TIME,END_TIME,JOB_TYPE,plat,JOB_STATE,JOB_RLT,ERR_INFO,EXEC_ACTION from uccp_eng_job_jnl where START_TIME = #{START_TIME} and plat = #{plat} and JOB_STATE = #{JOB_STATE} and JOB_RLT = #{JOB_RLT}
+    </select>
+    <resultMap id="jobResultMap" type="Job">
+        <id column="JOB_RUN_ID" property="JOB_RUN_ID"/>
+        <result column="JOB_ID" property="JOB_ID"/>
+        <result column="START_TIME" property="START_TIME"/>
+        <result column="END_TIME" property="END_TIME"/>
+        <result column="JOB_TYPE" property="JOB_TYPE"/>
+        <result column="plat" property="plat"/>
+        <result column="JOB_USER" property="JOB_USER"/>
+        <result column="JOB_ROLE" property="JOB_ROLE"/>
+        <result column="JOB_TENANT" property="JOB_TENANT"/>
+        <result column="JOB_STATE" property="JOB_STATE"/>
+        <result column="JOB_RLT" property="JOB_RLT"/>
+        <result column="ERR_INFO" property="ERR_INFO"/>
+        <result column="EXEC_ACTION" property="EXEC_ACTION"/>
+    </resultMap>
+
+</mapper>

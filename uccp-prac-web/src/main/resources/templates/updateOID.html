@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>修改OID信息</title>
+    <link rel="stylesheet" href="../../static/css/bootstrap.css">
+</head>
+<body>
+<nav class="navbar  nav-pills  navbar-expand-lg ">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link " href="/uccp/practice">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/uccp/job/index" >采控作业执行流水信息查询</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/uccp/task/index" >采控任务流水信息查询</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/uccp/oid/index" >OID信息管理</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/uccp/practice">主页</a></li>
+            <li class="breadcrumb-item"><a href="/uccp/oid/index">OID信息管理</a></li>
+            <li class="breadcrumb-item active" aria-current="page">修改OID信息</li>
+        </ol>
+    </nav>
+    <form action="/uccp/oid/update" method="post">
+        <div class="form-group row">
+            <label for="OID" class="col-sm-2 col-form-label">OID</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="OID" placeholder="OID" name="OID" th:value="${oid.OID}" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="OID_NAME" class="col-sm-2 col-form-label">OID名称</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="OID_NAME" placeholder="OID_NAME" name="OID_NAME" th:value="${oid.OID_NAME}">
+            </div>
+        </div>
+
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">是否公有</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="PUB_FLAG" id="gridRadios1" value="1"  th:checked="*{oid.PUB_FLAG}eq '1'" >
+                        <label class="form-check-label" for="gridRadios1">
+                            公共OID
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="PUB_FLAG" id="gridRadios2" value="0"   th:checked="*{oid.PUB_FLAG}eq '0'"  >
+                        <label class="form-check-label" for="gridRadios2">
+                            私有OID
+                        </label>
+                        <span th:text="${oid}"></span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <label for="OID_DEVICE_TYPE" class="col-sm-2 col-form-label">OID类型</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="OID_DEVICE_TYPE" placeholder="计算机，交换机，路由器，防火墙等" name="OID_DEVICE_TYPE" th:value="${oid.OID_DEVICE_TYPE}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="ENTERPRISE" class="col-sm-2 col-form-label">厂商</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="ENTERPRISE" placeholder="厂商" name="ENTERPRISE" th:value="${oid.ENTERPRISE}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="OID_DEVICE_CODE" class="col-sm-2 col-form-label">设备型号</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="OID_DEVICE_CODE" placeholder="设备型号" name="OID_DEVICE_CODE" th:value="${oid.OID_DEVICE_CODE}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="OID_DEVICE_VERSION" class="col-sm-2 col-form-label">设备版本</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="OID_DEVICE_VERSION" placeholder="设备型号" name="OID_DEVICE_VERSION" th:value="${oid.OID_DEVICE_VERSION}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="DESCRIPTION" class="col-sm-2 col-form-label">描述</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="DESCRIPTION" placeholder="描述" name="DESCRIPTION"  th:value="${oid.DESCRIPTION}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">更新</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../../static/js/jquery.min.js"></script>
+<script src="../../static/js/bootstrap.js"></script>
+</body>
+</html>

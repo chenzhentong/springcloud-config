@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nantian.dao.TaskMapper">
+
+    <select id="selectTaskById" resultMap="taskResultMap" parameterType="String">
+        select uccp_eng_task_jnl.TASK_ID, uccp_eng_task_jnl.JOB_RUN_ID,
+               uccp_eng_task_jnl.JOB_ID,  uccp_eng_task_jnl.DEV_IP,
+               uccp_eng_task_jnl.START_TIME,uccp_eng_task_jnl.END_TIME,
+               uccp_eng_task_jnl.TASK_STATE, uccp_eng_task_jnl.TASK_RLT,
+               uccp_eng_task_jnl.ERR_INFO
+        from uccp_eng_task_jnl,uccp_eng_job_jnl  where  uccp_eng_task_jnl.JOB_RUN_ID = uccp_eng_job_jnl.JOB_RUN_ID
+ and TASK_ID = #{taskId};
+    </select>
+
+    <resultMap id="taskResultMap" type="Task">
+        <id column="TASK_ID" property="TASK_ID"/>
+        <result column="JOB_RUN_ID" property="JOB_RUN_ID"/>
+        <result column="JOB_ID" property="JOB_ID"/>
+        <result column="DEV_IP" property="DEV_IP"/>
+        <result column="START_TIME" property="START_TIME"/>
+        <result column="END_TIME" property="END_TIME"/>
+        <result column="TASK_STATE" property="TASK_STATE"/>
+        <result column="TASK_RLT" property="TASK_RLT"/>
+        <result column="ERR_INFO" property="ERR_INFO"/>
+    </resultMap>
+</mapper>

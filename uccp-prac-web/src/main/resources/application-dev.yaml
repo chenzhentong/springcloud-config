@@ -17,8 +17,11 @@ app:
 
 ## spring相关配置信息
 spring:
+#  mvc:
+#    static-path-pattern: classpath:/static/
   thymeleaf:
     cache: false #测试环境关闭缓存
+    prefix: classpath:/templates/
   datasource:
     druid:
       url: jdbc:mysql://10.10.49.103:3306/uccp_test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
@@ -36,3 +39,13 @@ spring:
         max-idle: 10
         min-idle: 0
     timeout: 2000
+
+
+mybatis-plus:
+  type-aliases-package: com.nantian.entity #配置mybatis映射文件中实体类的别名
+  mapper-locations: classpath:/mapper/*.xml
+logging:
+  level:
+    com:
+      nantian:
+        dao: debug
