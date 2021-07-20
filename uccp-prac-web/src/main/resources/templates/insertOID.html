@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link " href="/uccp/practice">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="/uccp/practice">主页 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/uccp/job/index" >采控作业执行流水信息查询</a>
@@ -39,7 +39,7 @@
         </ol>
     </nav>
 
-    <form action="/uccp/oid/insert" method="post">
+    <form action="/uccp/oid/insert" method="post" id="form">
 
         <div class="form-group row">
             <label for="OID_NAME" class="col-sm-2 col-form-label">OID名称</label>
@@ -69,10 +69,40 @@
             </div>
         </fieldset>
         <div class="form-group row">
-            <label for="OID_DEVICE_TYPE" class="col-sm-2 col-form-label">OID类型</label>
+            <label  class="col-sm-2 col-form-label">OID类型</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="OID_DEVICE_TYPE" placeholder="计算机，交换机，路由器，防火墙等" name="OID_DEVICE_TYPE">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="OID_DEVICE_TYPE" id="OID_DEVICE_TYPE1" value="0" checked>
+                    <label class="form-check-label" for="OID_DEVICE_TYPE1">
+                        计算机
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="OID_DEVICE_TYPE" id="OID_DEVICE_TYPE2" value="1">
+                    <label class="form-check-label" for="OID_DEVICE_TYPE2">
+                        交换机
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="OID_DEVICE_TYPE" id="OID_DEVICE_TYPE3" value="2">
+                    <label class="form-check-label" for="OID_DEVICE_TYPE3">
+                        路由器
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="OID_DEVICE_TYPE" id="OID_DEVICE_TYPE4" value="3">
+                    <label class="form-check-label" for="OID_DEVICE_TYPE4">
+                        防火墙
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="OID_DEVICE_TYPE" id="OID_DEVICE_TYPE5" value="4">
+                    <label class="form-check-label" for="OID_DEVICE_TYPE5">
+                        其他
+                    </label>
+                </div>
             </div>
+
         </div>
         <div class="form-group row">
             <label for="ENTERPRISE" class="col-sm-2 col-form-label">厂商</label>
@@ -107,5 +137,70 @@
 </div>
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.js"></script>
+<script src="../static/js/bootstrapValidator.js"></script>
+<script>
+    $(function () {
+        $('#form').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                OID_NAME: {
+                    validators: {
+                        notEmpty: {
+                            message: 'OID名称为必填项'
+                        }
+                    }
+                },
+                PUB_FLAG: {
+                    validators: {
+                        notEmpty: {
+                            message: '是否公有为必填项'
+                        }
+                    }
+                },
+                OID_DEVICE_TYPE: {
+                    validators: {
+                        notEmpty: {
+                            message: '设备类型为必填项'
+                        }
+                    }
+                },
+                ENTERPRISE: {
+                    validators: {
+                        notEmpty: {
+                            message: '厂商为必填项'
+                        }
+                    }
+                },
+                OID_DEVICE_CODE: {
+                    validators: {
+                        notEmpty: {
+                            message: '设备型号为必填项'
+                        }
+                    }
+                },
+                OID_DEVICE_VERSION: {
+                    validators: {
+                        notEmpty: {
+                            message: '设备版本为必填项'
+                        }
+                    }
+                },
+                DESCRIPTION: {
+                    validators: {
+                        notEmpty: {
+                            message: '描述为必填项'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.bv', function (e) {
+
+            });
+    });
+</script>
 </body>
 </html>

@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link " href="/uccp/practice">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="/uccp/practice">主页 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/uccp/job/index" >采控作业执行流水信息查询</a>
@@ -39,7 +39,9 @@
     </nav>
     <h2 th:text="${'共查询到' +oidList.size() + '条OID信息' }" class="text-center"></h2>
     <a class="btn btn-primary" href="/uccp/oid/insert">添加</a>
+
     <br>
+    <p class="text-center">注: 是否公有:1为公有,0为私有 OID类型:0为计算机,1为交换机,2为路由器,3为防火墙,4为其他</p>
     <table class="table table-hover table-bordered  table-striped ">
         <tr>
             <th>OID</th>
@@ -55,16 +57,19 @@
         <tr th:each="obj : ${oidList}">
             <td th:text="${obj.OID}"></td>
             <td th:text="${obj.OID_NAME}"></td>
-            <th th:text="${obj.PUB_FLAG}"></th>
-            <th th:text="${obj.OID_DEVICE_TYPE}"></th>
-            <th th:text="${obj.ENTERPRISE}"></th>
-            <th th:text="${obj.OID_DEVICE_CODE}"></th>
-            <th th:text="${obj.OID_DEVICE_VERSION}"></th>
-            <th th:text="${obj.DESCRIPTION}"></th>
-            <th>
+            <td th:text="${obj.PUB_FLAG}">
+            </td>
+            <td th:text="${obj.OID_DEVICE_TYPE}">
+
+            </td>
+            <td th:text="${obj.ENTERPRISE}"></td>
+            <td th:text="${obj.OID_DEVICE_CODE}"></td>
+            <td th:text="${obj.OID_DEVICE_VERSION}"></td>
+            <td th:text="${obj.DESCRIPTION}"></td>
+            <td>
                 <a class="btn btn-info" th:href="'/uccp/oid/update/' + ${obj.OID}">修改</a>
                 <a class="btn btn-danger" th:href="'/uccp/oid/delete/' + ${obj.OID}">删除</a>
-            </th>
+            </td>
         </tr>
     </table>
 </div>

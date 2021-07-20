@@ -22,4 +22,5 @@ public class OID {
     private String OID_DEVICE_CODE;//设备型号
     private String OID_DEVICE_VERSION;//设备版本
     private String DESCRIPTION;//描述
+
 }

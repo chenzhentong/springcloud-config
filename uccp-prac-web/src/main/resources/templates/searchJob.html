@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>查询采控作业执行流水</title>
     <link rel="stylesheet" href="../static/css/bootstrap.css">
-
+    <link rel="stylesheet" href="../static/css/bootstrap-datetimepicker.css">
 </head>
 <body>
 <nav class="navbar  nav-pills  navbar-expand-lg ">
@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link " href="/uccp/practice">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="/uccp/practice">主页 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="/uccp/job/index" >采控作业执行流水信息查询</a>
@@ -43,19 +43,18 @@
         </ol>
     </nav>
 
-    <form action="/uccp/job/search" method="get">
+    <form action="/uccp/job/search" method="get" id="form">
 
         <div class="form-group row">
             <label for="startTime" class="col-sm-2 col-form-label">开始日期</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="startTime" placeholder="startTime" name="startTime">
-
+                <input type="text" class="form-control datepicker" id="startTime"  placeholder="请输入yyyy-MM-dd格式的日期字符串,比如2021-07-20" name="startTime">
             </div>
         </div>
         <div class="form-group row">
             <label for="plat" class="col-sm-2 col-form-label">作业来源</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="plat" placeholder="plat" name="plat">
+                <input type="text" class="form-control" id="plat" placeholder="作业来源" name="plat">
             </div>
         </div>
         <fieldset class="form-group">
@@ -115,7 +114,64 @@
 
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.js"></script>
+<script src="../static/js/bootstrap-datetimepicker.js"></script>
+<script>
+    $('.datepicker').datetimepicker({
+        format:'yyyy-mm-dd', //格式
+        language:'zh-CN', //中文
+        autoclose: true,//选择后自动关闭
+        //showMeridian:true, //是否显示上下午
+        minView:2,//精确到哪位
+        endDate: new Date(), //定义当天之后日期不能选定
+        todayBtn : "linked",
+        todayHighlight : true,
 
+    });
 
+</script>
+<script src="../static/js/bootstrapValidator.js"></script>
+<script>
+    $(function () {
+        $('#form').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                startTime: {
+                    validators: {
+                        notEmpty: {
+                            message: '开始时间为必填项'
+                        }
+                    }
+                },
+                plat: {
+                    validators: {
+                        notEmpty: {
+                            message: '作业来源为必填项'
+                        }
+                    }
+                },
+                jobState: {
+                    validators: {
+                        notEmpty: {
+                            message: '作业运行状态为必填项'
+                        }
+                    }
+                },
+                jobRlt: {
+                    validators: {
+                        notEmpty: {
+                            message: '作业执行结果为必填项'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.bv', function (e) {
+
+        });
+    });
+</script>
 </body>
 </html>

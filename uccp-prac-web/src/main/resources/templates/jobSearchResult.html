@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link " href="/uccp/practice">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="/uccp/practice">主页 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="/uccp/job/index" >采控作业执行流水信息查询</a>
@@ -60,15 +60,15 @@
         </tr>
         <tr th:each="job : ${jobList}">
             <td th:text="${job.JOB_RUN_ID}"></td>
-            <th th:text="${job.JOB_ID}"></th>
-            <th th:text="${job.START_TIME}"></th>
-            <th th:text="${job.END_TIME}"></th>
-            <th th:text="${job.JOB_TYPE}"></th>
-            <th th:text="${job.plat}"></th>
-            <th th:text="${job.JOB_STATE}"></th>
-            <th th:text="${job.JOB_RLT}"></th>
-            <th th:text="${job.ERR_INFO}"></th>
-            <th th:text="${job.EXEC_ACTION}"></th>
+            <td th:text="${job.JOB_ID}"></td>
+            <td th:text="${job.START_TIME}"></td>
+            <td th:text="${job.END_TIME}"></td>
+            <td th:text="${job.JOB_TYPE}"></td>
+            <td th:text="${job.plat}"></td>
+            <td th:text="${job.JOB_STATE}"></td>
+            <td th:text="${job.JOB_RLT}"></td>
+            <td th:text="${job.ERR_INFO}"></td>
+            <td th:text="${job.EXEC_ACTION}"></td>
         </tr>
     </table>
 </div>
